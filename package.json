@@ -35,7 +35,6 @@
 	],
 	"dependencies": {
 		"@xingrz/decompress": "^5.0.0-alpha.7",
-		"archive-type": "^4.0.0",
 		"content-disposition": "^0.5.2",
 		"ext-name": "^5.0.0",
 		"file-type": "^16.5.3",

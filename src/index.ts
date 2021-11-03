@@ -1,7 +1,6 @@
 import { outputFile } from 'fs-extra';
 import { join, basename, extname, dirname } from 'path';
 import contentDisposition from 'content-disposition';
-import archiveType from 'archive-type';
 import decompress, { File, DecompressOptions } from '@xingrz/decompress'
 import filenamify from 'filenamify';
 import getStream from 'get-stream';
@@ -86,7 +85,7 @@ async function downloadStream(stream: GotStreamRequest, opts: DownloadOptions, d
 	const res = await pEvent<'response', Response<Buffer>>(stream, 'response');
 	const data = await getStream.buffer(stream);
 
-	const shouldExtract = opts.extract && archiveType(data);
+	const shouldExtract = opts.extract && await supportExtract(data);
 	if (destination) {
 		const filename = opts.filename || filenamify(await getFilename(res, data));
 		const outputFilepath = join(destination, filename);
@@ -103,6 +102,19 @@ async function downloadStream(stream: GotStreamRequest, opts: DownloadOptions, d
 			return data;
 		}
 	}
+}
+
+// TODO: Configurable and determine from registered decompress plugins
+const SUPPORTED_ARCHIVES = [
+	// supported out of box
+	'tar', 'bz2', 'gz', 'zst', 'zip',
+	// plugins available
+	'7z', 'rar', 'xz',
+];
+
+async function supportExtract(data: Buffer): Promise<boolean> {
+	const type = await fileType.fromBuffer(data);
+	return !!type && SUPPORTED_ARCHIVES.includes(type.ext);
 }
 
 function filenameFromPath(res: Response<Buffer>): string {
