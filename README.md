@@ -1,4 +1,4 @@
-@xingrz/download [![test](https://github.com/xingrz/download/actions/workflows/test.yml/badge.svg)](https://github.com/xingrz/download/actions/workflows/test.yml)
+@xingrz/download2 [![test](https://github.com/xingrz/download/actions/workflows/test.yml/badge.svg)](https://github.com/xingrz/download/actions/workflows/test.yml)
 ==========
 
 [![][npm-version]][npm-url] [![][npm-downloads]][npm-url] [![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![stars][stars-img]][stars-url] [![commits][commits-img]][commits-url]
@@ -10,14 +10,14 @@ Download and extract files
 ## Install
 
 ```
-$ npm install @xingrz/download --save
+$ npm install @xingrz/download2 --save
 ```
 
 ## Usage
 
 ```ts
 import { writeFileSync, createWriteStream } from 'fs';
-import download from 'download';
+import download from '@xingrz/download2';
 
 (async () => {
 	await download('http://unicorn.com/foo.jpg', 'dist');
@@ -78,9 +78,9 @@ Name of the saved file.
 
 MIT © [Kevin Mårtensson](https://github.com/kevva), [XiNGRZ](https://github.com/xingrz)
 
-[npm-version]: https://img.shields.io/npm/v/@xingrz/download.svg?style=flat-square
-[npm-downloads]: https://img.shields.io/npm/dm/@xingrz/download.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/@xingrz/download
+[npm-version]: https://img.shields.io/npm/v/@xingrz/download2.svg?style=flat-square
+[npm-downloads]: https://img.shields.io/npm/dm/@xingrz/download2.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@xingrz/download2
 [license-img]: https://img.shields.io/github/license/xingrz/download?style=flat-square
 [license-url]: LICENSE
 [issues-img]: https://img.shields.io/github/issues/xingrz/download?style=flat-square
