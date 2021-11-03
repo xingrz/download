@@ -86,19 +86,23 @@ async function downloadStream(stream: GotStreamRequest, opts: DownloadOptions, d
 	const res = await pEvent<'response', Response<Buffer>>(stream, 'response');
 	const data = await getStream.buffer(stream);
 
-	if (!destination) {
-		return opts.extract && archiveType(data) ? await decompress(data, opts) : data;
+	const shouldExtract = opts.extract && archiveType(data);
+	if (destination) {
+		const filename = opts.filename || filenamify(await getFilename(res, data));
+		const outputFilepath = join(destination, filename);
+		if (shouldExtract) {
+			return await decompress(data, dirname(outputFilepath), opts);
+		} else {
+			await outputFile(outputFilepath, data);
+			return data;
+		}
+	} else {
+		if (shouldExtract) {
+			return await decompress(data, opts);
+		} else {
+			return data;
+		}
 	}
-
-	const filename = opts.filename || filenamify(await getFilename(res, data));
-	const outputFilepath = join(destination, filename);
-
-	if (opts.extract && archiveType(data)) {
-		return await decompress(data, dirname(outputFilepath), opts);
-	}
-
-	await outputFile(outputFilepath, data);
-	return data;
 }
 
 function filenameFromPath(res: Response<Buffer>): string {
