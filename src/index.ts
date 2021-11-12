@@ -1,7 +1,8 @@
 import { outputFile } from 'fs-extra';
 import { join, basename, extname, dirname } from 'path';
 import contentDisposition from 'content-disposition';
-import decompress, { File, DecompressOptions } from '@xingrz/decompress'
+import decompress, { DecompressOptions } from '@xingrz/decompress'
+import { File } from '@xingrz/decompress-types'
 import filenamify from 'filenamify';
 import getStream from 'get-stream';
 import got, { Response, Options as GotStreamOptions } from 'got';
