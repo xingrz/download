@@ -3,14 +3,12 @@
 
 [![][npm-version]][npm-url] [![][npm-downloads]][npm-url] [![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![stars][stars-img]][stars-url] [![commits][commits-img]][commits-url]
 
-Download and extract files
-
-*See [download-cli](https://github.com/kevva/download-cli) for the command-line version.*
+Download and extract files.
 
 ## Install
 
-```
-$ npm install @xingrz/download2 --save
+```sh
+npm install --save @xingrz/download2
 ```
 
 ## Usage
@@ -39,40 +37,41 @@ To work with proxies, read the [`got documentation`](https://github.com/sindreso
 
 ## API
 
-### download(url, destination?, options?)
+### `download(url[, destination][, options])`
 
 Returns both a `Promise<Buffer>` and a [Duplex stream](https://nodejs.org/api/stream.html#stream_class_stream_duplex) with [additional events](https://github.com/sindresorhus/got#streams-1).
 
-#### url
+If `extract: true` is set, returns `Promise<File[]>` instead of `Promise<Buffer>`.
+
+#### `url`
 
 Type: `string`
 
 URL to download.
 
-#### destination
+#### `destination`
 
-Type: `string`
+Type: `string` (optional)
 
-Path to where your file will be written.
+Path to directory where your file will be written.
 
-#### options
+#### `options`
 
 Type: `Object`
 
-Same options as [`got`](https://github.com/sindresorhus/got#options) and [`decompress`](https://github.com/xingrz/decompress#options) in addition to the ones below.
+Same options as [`got`](https://github.com/sindresorhus/got#options) and [`@xingrz/decompress`](https://github.com/xingrz/decompress#options) in addition to the ones below.
 
-##### extract
+##### `extract`
 
-Type: `boolean`<br>
-Default: `false`
+Type: `boolean`
 
-If set to `true`, try extracting the file using [`decompress`](https://github.com/xingrz/decompress).
+If set to `true`, try extracting the file using [`@xingrz/decompress`](https://github.com/xingrz/decompress).
 
-##### filename
+##### `filename`
 
 Type: `string`
 
-Name of the saved file.
+Name of the saved file. Will be ignored if `extract` is set to `true`.
 
 ## License
 
