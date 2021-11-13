@@ -34,7 +34,7 @@
 		"url"
 	],
 	"dependencies": {
-		"@xingrz/decompress": "^5.1.0-alpha.1",
+		"@xingrz/decompress": "^5.2.0-alpha.1",
 		"content-disposition": "^0.5.2",
 		"ext-name": "^5.0.0",
 		"file-type": "^16.5.3",
